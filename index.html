@@ -4,17 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AT Dev Studio</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>AT Dev Studio - Custom Website Development & Design | Fast, Modern Websites</title>
+    <meta name="title" content="AT Dev Studio - Custom Website Development & Design | Fast, Modern Websites">
+    <meta name="description" content="Professional custom website development and UI/UX design services. We create fast, modern, SEO-optimized websites that convert visitors into customers. Get a quote today!">
+    <meta name="keywords" content="website development, custom websites, web design, UI/UX design, responsive design, SEO optimization, fast websites, modern web design, business websites, landing pages, web development services, professional websites, website builder, ecommerce websites, mobile-friendly websites">
+    <meta name="author" content="AT Dev Studio">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://atdevstudio.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://atdevstudio.com/">
+    <meta property="og:title" content="AT Dev Studio - Custom Website Development & Design">
+    <meta property="og:description" content="Professional custom website development and UI/UX design services. We create fast, modern, SEO-optimized websites that convert visitors into customers.">
+    <meta property="og:image" content="https://atdevstudio.com/Images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="AT Dev Studio">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://atdevstudio.com/">
+    <meta name="twitter:title" content="AT Dev Studio - Custom Website Development & Design">
+    <meta name="twitter:description" content="Professional custom website development and UI/UX design services. Fast, modern, SEO-optimized websites.">
+    <meta name="twitter:image" content="https://atdevstudio.com/Images/logo.png">
+    <meta name="twitter:creator" content="@atdevstudio">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./Images/logo.png">
+    <link rel="apple-touch-icon" href="./Images/logo.png">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles/styles.css">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AT Dev Studio",
+      "url": "https://atdevstudio.com",
+      "logo": "https://atdevstudio.com/Images/logo.png",
+      "description": "Professional custom website development and UI/UX design services. We create fast, modern, SEO-optimized websites.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-818-691-6536",
+        "contactType": "Customer Service",
+        "email": "team.atdevstudio@gmail.com",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://www.instagram.com/atdevstudio"
+      ],
+      "areaServed": "Worldwide",
+      "knowsAbout": [
+        "Web Development",
+        "Web Design",
+        "UI/UX Design",
+        "SEO Optimization",
+        "Responsive Design"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AT Dev Studio",
+      "url": "https://atdevstudio.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://atdevstudio.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Website Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "AT Dev Studio"
+      },
+      "description": "Custom website development, UI/UX design, and performance optimization services",
+      "areaServed": "Worldwide",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Web Development Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Custom Website Development",
+              "description": "Modern, fast, and scalable websites tailored to your business needs"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "UI/UX Design",
+              "description": "Modern, user-friendly designs with responsive layouts and strong visual hierarchy"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Performance & Optimization",
+              "description": "Speed optimization, SEO-ready websites with clean code"
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-wrapper">
-                <div class="logo">AT Dev Studio</div>
+                <div class="logo" itemscope itemtype="https://schema.org/Organization">
+                    <span itemprop="name">AT Dev Studio</span>
+                </div>
                 <ul class="nav-menu">
                     <li><span class="nava" id="currentLink">Home</span></li>
                     <li><a href="about.html" class="nava">About</a></li>
@@ -332,7 +461,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -424,6 +553,56 @@
             </div>
         </div>
     </div>
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can a professional website help my business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A professional website builds trust, attracts new customers, and clearly presents your services. It works as a 24/7 digital presence that helps turn visitors into leads and supports long-term business growth."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is building a website a complicated process?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at all! Our team handles the integration process from start to finish, ensuring a smooth transition with minimal disruption to your existing workflows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What types of businesses do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work with a wide range of businesses, including local companies, startups, and growing brands. Any business that needs a professional online presence can benefit from a well-built website."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need technical knowledge to get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at all. We take care of the technical work and guide you through the entire process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will you help me after my website goes live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We provide ongoing support after launch, including updates, fixes, and guidance whenever you need help with your website."
+          }
+        }
+      ]
+    }
+    </script>
 
     <script src="scripts/script.js"></script>
 </body>

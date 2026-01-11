@@ -1,0 +1,23 @@
+# robots.txt for AT Dev Studio
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://atdevstudio.com/sitemap.xml
+
+# Disallow admin or private areas (if any exist in future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all important pages
+Allow: /index.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /styles/
+Allow: /scripts/
+Allow: /Images/
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
