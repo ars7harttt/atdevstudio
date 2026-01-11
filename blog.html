@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - AT Dev Studio</title>
+  <link rel="icon" type="image/x-icon" href="logo.png">
+  <link rel="stylesheet" href="./styles/styles.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-wrapper">
+        <div class="logo">AT Dev Studio</div>
+        <ul class="nav-menu">
+          <li><a href="index.html#home" class="nava">Home</a></li>
+          <li><a href="about.html" class="nava">About</a></li>
+          <li><span class="nava" id="currentLink">Blog</span></li>
+          <li><a href="contact.html" class="nava">Contact</a></li>
+          <li><a href="contact.html" class="btn-primary">Book a call</a></li>
+        </ul>
+        <button class="mobile-menu-toggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <header class="blog-hero">
+    <div class="stars" id="stars"></div>
+    <div class="container">
+      <div class="blog-hero-inner">
+        <span class="blog-hero-badge">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 L6 6 L10 6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="6" r="4"/>
+          </svg>
+          Latest Insights
+        </span>
+        <h1 class="blog-hero-title">Web Growth Made Simple</h1>
+        <p class="blog-hero-subtitle">
+          Real strategies, practical tips, and actionable insights to help your business website convert visitors into customers.
+        </p>
+
+        <div class="blog-hero-actions">
+          <a href="#latest" class="btn-secondary">Explore Articles</a>
+          <a href="#newsletter" class="btn-primary">Join Newsletter</a>
+        </div>
+
+        <div class="blog-categories" aria-label="Blog categories">
+          <button class="blog-pill active" type="button">All Topics</button>
+          <button class="blog-pill" type="button">Design</button>
+          <button class="blog-pill" type="button">Development</button>
+          <button class="blog-pill" type="button">Performance</button>
+          <button class="blog-pill" type="button">SEO</button>
+          <button class="blog-pill" type="button">Business</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Post -->
+  <section class="blog-featured" aria-label="Featured article">
+    <div class="container">
+      <a class="featured-post" href="#" aria-label="Read featured article">
+        <div class="featured-content">
+          <div class="featured-meta">
+            <span class="featured-tag">Featured</span>
+            <span class="featured-date">Jan 2026</span>
+            <span class="featured-read">6 min read</span>
+          </div>
+          <h2>What Makes a Website Feel “Premium” (Without Being Slow)</h2>
+          <p>
+            The exact patterns we use to get that luxury look while keeping lighthouse scores high: spacing, motion, typography,
+            and small details that make visitors trust you.
+          </p>
+          <div class="featured-cta">
+            <span>Read article</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
+
+        <div class="featured-visual" aria-hidden="true">
+          <div class="featured-orb orb-a"></div>
+          <div class="featured-orb orb-b"></div>
+          <div class="featured-grid"></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Latest Posts -->
+  <section id="latest" class="blog-latest">
+    <div class="container">
+      <div class="blog-head">
+        <div>
+          <h2 class="section-title section-title--left">Latest posts</h2>
+          <p class="section-subtitle section-subtitle--left">
+            Short, actionable reads — built for busy founders.
+          </p>
+        </div>
+
+        <div class="blog-search">
+          <label class="sr-only" for="blog-search">Search</label>
+          <input id="blog-search" type="search" placeholder="Search articles…" />
+        </div>
+      </div>
+
+      <div class="blog-grid">
+        <article class="blog-card" data-tags="design,seo">
+          <a class="blog-card-link" href="#">
+            <div class="blog-card-top">
+              <span class="blog-card-tag">Design</span>
+              <span class="blog-card-read">4 min</span>
+            </div>
+            <h3>Website layout mistakes that kill conversions</h3>
+            <p>Common spacing, hierarchy, and CTA placement issues — and the fixes that instantly improve clarity.</p>
+            <div class="blog-card-bottom">
+              <span class="blog-card-date">Jan 2026</span>
+              <span class="blog-card-arrow">→</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-tags="performance,development">
+          <a class="blog-card-link" href="#">
+            <div class="blog-card-top">
+              <span class="blog-card-tag">Performance</span>
+              <span class="blog-card-read">5 min</span>
+            </div>
+            <h3>How we keep animations smooth (and still fast)</h3>
+            <p>Practical tips: GPU-friendly transforms, reduced layout thrash, and tasteful motion without bloat.</p>
+            <div class="blog-card-bottom">
+              <span class="blog-card-date">Jan 2026</span>
+              <span class="blog-card-arrow">→</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-tags="seo,business">
+          <a class="blog-card-link" href="#">
+            <div class="blog-card-top">
+              <span class="blog-card-tag">SEO</span>
+              <span class="blog-card-read">7 min</span>
+            </div>
+            <h3>SEO basics that actually move the needle</h3>
+            <p>Metadata, headings, performance, internal linking — the simple checklist we use on every build.</p>
+            <div class="blog-card-bottom">
+              <span class="blog-card-date">Dec 2025</span>
+              <span class="blog-card-arrow">→</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-tags="development">
+          <a class="blog-card-link" href="#">
+            <div class="blog-card-top">
+              <span class="blog-card-tag">Development</span>
+              <span class="blog-card-read">6 min</span>
+            </div>
+            <h3>Contact forms that convert (and don’t spam you)</h3>
+            <p>UX patterns + simple validation ideas so people complete the form, and bots don’t.</p>
+            <div class="blog-card-bottom">
+              <span class="blog-card-date">Dec 2025</span>
+              <span class="blog-card-arrow">→</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-tags="business">
+          <a class="blog-card-link" href="#">
+            <div class="blog-card-top">
+              <span class="blog-card-tag">Business</span>
+              <span class="blog-card-read">3 min</span>
+            </div>
+            <h3>How to write website copy that feels expensive</h3>
+            <p>Clear positioning, specific promises, and a structure that makes people want to book a call.</p>
+            <div class="blog-card-bottom">
+              <span class="blog-card-date">Dec 2025</span>
+              <span class="blog-card-arrow">→</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-tags="design">
+          <a class="blog-card-link" href="#">
+            <div class="blog-card-top">
+              <span class="blog-card-tag">Design</span>
+              <span class="blog-card-read">5 min</span>
+            </div>
+            <h3>Color + contrast: making dark sites readable</h3>
+            <p>How to keep that ultra-luxury dark vibe while staying accessible and crisp.</p>
+            <div class="blog-card-bottom">
+              <span class="blog-card-date">Nov 2025</span>
+              <span class="blog-card-arrow">→</span>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <div class="blog-pagination" aria-label="Pagination">
+        <button class="btn-secondary blog-page-btn" type="button" disabled>Prev</button>
+        <div class="blog-page-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <button class="btn-secondary blog-page-btn" type="button">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter" class="blog-newsletter">
+    <div class="container">
+      <div class="blog-newsletter-card">
+        <div class="blog-newsletter-copy">
+          <h2>Join our newsletter</h2>
+          <p>1–2 emails per month. Real tips. No fluff.</p>
+        </div>
+
+        <form class="blog-newsletter-form newsletter" action="#" method="post">
+          <label class="sr-only" for="nl-email">Email</label>
+          <input id="nl-email" type="email" placeholder="you@example.com" required />
+          <button class="btn-primary" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">AT Dev Studio</div>
+                    <p>AT Dev Studio — modern websites that look sharp, load fast, and convert.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#process">Process</a></li>
+                        <li><a href="index.html#benefits">Benefits</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Socials</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Linkedin</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© All right reserved</p>
+            </div>
+        </div>
+    </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Blog page: simple category pill active state (visual only)
+    document.querySelectorAll('.blog-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.blog-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
