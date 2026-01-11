@@ -649,7 +649,7 @@ if (contactForm) {
     }
     
     try {
-      // Determine API URL (use relative path if same domain, or full URL for production)
+      // Determine API URL (use relative path for Vercel, or localhost for development)
       const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:3000/api/contact'
         : '/api/contact';
