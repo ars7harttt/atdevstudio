@@ -369,7 +369,7 @@ newsletterForms.forEach(form => {
     }
 });
 
-console.log('XTRACT Website Loaded Successfully! 🚀');
+console.log('AT Dev Studio Website Loaded Successfully! 🚀');
 
 // AI Assistant Widget
 const aiAssistantButton = document.getElementById('aiAssistantButton');
@@ -436,27 +436,43 @@ if (aiAssistantButton && aiAssistantChat) {
         
         // Simple keyword-based responses
         if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-            return "Hello! I'm here to help you learn more about XTRACT's AI automation services. What would you like to know?";
+            return "Hello! I'm here to help you learn more about AT Dev Studio's website development services. We create custom websites that look sharp, load fast, and bring results. What would you like to know?";
         }
         
-        if (message.includes('service') || message.includes('what do you do')) {
-            return "We offer AI automation solutions including workflow automation, AI assistants, sales & marketing automation, and custom AI projects. Would you like to know more about any specific service?";
+        if (message.includes('service') || message.includes('what do you do') || message.includes('what services')) {
+            return "We offer three main services: 1) Custom Website Development - building modern, fast websites from landing pages to full business sites, 2) UI/UX Design - creating user-friendly designs with responsive layouts and strong visual hierarchy, and 3) Performance & Optimization - ensuring your site loads fast, is SEO-ready, and has clean code. Would you like to know more about any specific service?";
         }
         
-        if (message.includes('price') || message.includes('cost') || message.includes('pricing')) {
-            return "We have three pricing plans: Starter ($37/month), Professional ($75/month), and Enterprise (custom pricing). Would you like to schedule a call to discuss which plan fits your needs?";
+        if (message.includes('price') || message.includes('cost') || message.includes('pricing') || message.includes('how much')) {
+            return "We provide custom quotes based on your specific needs and project scope. The best way to get an accurate price is to book a call with us or fill out our contact form. We'll discuss your requirements and provide a clear plan with pricing. Would you like to schedule a call?";
         }
         
-        if (message.includes('contact') || message.includes('email') || message.includes('phone')) {
-            return "You can reach us at team.atdevstudio@gmail.com or call us at +1 (818) 691-6536 or +1 (747) 252-3084. You can also fill out the contact form on our website!";
+        if (message.includes('contact') || message.includes('email') || message.includes('phone') || message.includes('reach')) {
+            return "You can reach us at team.atdevstudio@gmail.com or call us at +1 (818) 691-6536 or +1 (747) 252-3084. You can also fill out the contact form on our website to get a quote or book a call!";
         }
         
-        if (message.includes('automation') || message.includes('ai')) {
-            return "Our AI automation solutions help businesses streamline operations, reduce manual work, and scale efficiently. We can automate workflows, provide AI assistants, and create custom solutions tailored to your needs.";
+        if (message.includes('website') || message.includes('web development') || message.includes('build')) {
+            return "We build custom websites tailored to your business needs. Our process starts with planning and discovery to understand your goals, then we design and develop a modern, fast-loading website optimized for performance and SEO. Every site is built to grow with your business. Would you like to learn more about our process?";
+        }
+        
+        if (message.includes('process') || message.includes('how do you work') || message.includes('workflow')) {
+            return "Our process is simple and clear: Step 1 - Planning & Discovery where we understand your business, goals, target audience, and website structure. Step 2 - Design & Development where we create a modern, clean design and build it with optimized code. We keep you informed throughout and ensure your site is ready to launch. Want to know more details?";
+        }
+        
+        if (message.includes('design') || message.includes('ui') || message.includes('ux')) {
+            return "We create modern, user-friendly designs that guide visitors naturally toward action. Our designs feature clean layouts, strong visual hierarchy, and mobile-first responsive design. We also help with brand identity and user experience optimization. Is there a specific design aspect you're interested in?";
+        }
+        
+        if (message.includes('speed') || message.includes('performance') || message.includes('optimization') || message.includes('fast')) {
+            return "Performance is a priority for us. We optimize your website for speed, SEO basics, and performance from day one. This includes lightweight code, optimized images, responsive layouts, and clean markup. Your site will load fast and perform well across all devices. Would you like to know more about our optimization approach?";
+        }
+        
+        if (message.includes('quote') || message.includes('estimate') || message.includes('book a call')) {
+            return "Great! You can get a quote by filling out our contact form or booking a call with us. Just let us know about your business and what you need, and we'll provide a clear plan and pricing. You can reach us at team.atdevstudio@gmail.com or call +1 (818) 691-6536 or +1 (747) 252-3084.";
         }
         
         // Default response
-        return "That's a great question! I'd be happy to help you learn more about our AI automation services. You can ask me about our services, pricing, or how we can help automate your business processes. Feel free to contact us directly for more detailed information!";
+        return "That's a great question! I'd be happy to help you learn more about AT Dev Studio. We create custom websites that look sharp, load fast, and bring results. You can ask me about our services (website development, UI/UX design, performance optimization), our process, pricing, or how to get started. Feel free to contact us directly for more detailed information!";
     };
 
     // Send on button click
