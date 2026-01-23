@@ -43,7 +43,7 @@
     <meta name="rating" content="General">
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-config" content="/browserconfig.xml">
+    <!-- Removed msapplication-config because /browserconfig.xml is not present -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="AT Dev Studio">
@@ -137,9 +137,10 @@
     <meta name="twitter:label2" content="Contact">
     <meta name="twitter:data2" content="team.atdevstudio@gmail.com">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="./Images/logo.png">
-    <link rel="apple-touch-icon" href="./Images/logo.png">
+    <!-- Favicon / Site Icon (used by Google search results) -->
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles/styles.css">
