@@ -7,17 +7,6 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.atdevstudio.com"
-        }
-      ],
-      "destination": "https://atdevstudio.com/$1",
-      "permanent": true
     }
   ],
   "rewrites": [
