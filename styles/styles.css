@@ -1645,6 +1645,15 @@ section {
     .process-steps {
         grid-template-columns: 1fr;
     }
+    
+    /* Hide code block on mobile and center text */
+    .code-block {
+        display: none;
+    }
+    
+    .process-step > p {
+        text-align: center;
+    }
 
     .pricing-card.featured {
         transform: scale(1);
