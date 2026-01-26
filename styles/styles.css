@@ -338,6 +338,8 @@ body > * {
 .hero .container {
     position: relative;
     z-index: 2;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-content {
@@ -1646,12 +1648,24 @@ section {
         grid-template-columns: 1fr;
     }
     
-    /* Hide code block on mobile and center text */
+    /* Hide code block on mobile and center all text */
     .code-block {
         display: none;
     }
     
+    .process-step {
+        text-align: center;
+    }
+    
     .process-step > p {
+        text-align: center;
+    }
+    
+    .process-step h3 {
+        text-align: center;
+    }
+    
+    .step-number {
         text-align: center;
     }
 
