@@ -10,8 +10,9 @@ function createStars() {
         const star = document.createElement('div');
         star.className = `star ${sizes[Math.floor(Math.random() * sizes.length)]}`;
         
-        // Random starting position across the top
-        star.style.left = Math.random() * 100 + '%';
+        // Random starting position across the top (ensure it stays within viewport)
+        const maxLeft = 95; // Keep stars within 95% to prevent overflow
+        star.style.left = Math.random() * maxLeft + '%';
         star.style.top = '0';
         
         // Variable duration for different speeds - smoother range
@@ -19,6 +20,10 @@ function createStars() {
         star.style.animationDuration = duration + 's';
         star.style.animationDelay = '0s';
         star.style.animationTimingFunction = 'linear';
+        
+        // Ensure stars don't overflow horizontally
+        star.style.maxWidth = '4px';
+        star.style.maxHeight = '4px';
         
         starsContainer.appendChild(star);
         
@@ -85,17 +90,43 @@ faqItems.forEach(item => {
     });
 });
 
-// Smooth Scroll for Anchor Links
+// Smooth Scroll for Anchor Links - Extra smooth on mobile
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+            
+            // Use requestAnimationFrame for smoother scrolling on mobile
+            if (window.innerWidth <= 768) {
+                const startPosition = window.pageYOffset;
+                const distance = offsetTop - startPosition;
+                const duration = 800; // milliseconds
+                let start = null;
+                
+                function step(timestamp) {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    const percentage = Math.min(progress / duration, 1);
+                    
+                    // Easing function for smooth deceleration
+                    const ease = 1 - Math.pow(1 - percentage, 3);
+                    
+                    window.scrollTo(0, startPosition + distance * ease);
+                    
+                    if (progress < duration) {
+                        requestAnimationFrame(step);
+                    }
+                }
+                
+                requestAnimationFrame(step);
+            } else {
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
 });
@@ -574,8 +605,9 @@ if (aiAssistantButton && aiAssistantChat) {
   });
 
   // Ultra-subtle hero parallax (luxury, not gimmicky)
+  // Disabled on mobile for better performance and smoothness
   const heroContent = document.querySelector('.hero-content');
-  if (heroContent) {
+  if (heroContent && window.innerWidth > 768) {
     let ticking = false;
 
     const onScroll = () => {
@@ -584,7 +616,7 @@ if (aiAssistantButton && aiAssistantChat) {
       requestAnimationFrame(() => {
         const y = window.scrollY || 0;
         const offset = Math.min(y * 0.06, 18); // subtle
-        heroContent.style.transform = `translateY(${offset}px)`;
+        heroContent.style.transform = `translate3d(0, ${offset}px, 0)`;
         ticking = false;
       });
     };
