@@ -3,16 +3,18 @@ function createStars() {
     const starsContainer = document.getElementById('stars');
     if (!starsContainer) return;
     
-    const numberOfStars = 35;
+    // Detect mobile device and reduce stars for better performance
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const numberOfStars = isMobile ? 15 : 35; // Reduce stars on mobile
     const sizes = ['small', 'medium', 'large'];
+    const createInterval = isMobile ? 350 : 180; // Slower creation on mobile
     
     function createStar() {
         const star = document.createElement('div');
         star.className = `star ${sizes[Math.floor(Math.random() * sizes.length)]}`;
         
-        // Random starting position across the top (ensure it stays within viewport)
-        const maxLeft = 95; // Keep stars within 95% to prevent overflow
-        star.style.left = Math.random() * maxLeft + '%';
+        // Random starting position across the top
+        star.style.left = Math.random() * 100 + '%';
         star.style.top = '0';
         
         // Variable duration for different speeds - smoother range
@@ -20,10 +22,6 @@ function createStars() {
         star.style.animationDuration = duration + 's';
         star.style.animationDelay = '0s';
         star.style.animationTimingFunction = 'linear';
-        
-        // Ensure stars don't overflow horizontally
-        star.style.maxWidth = '4px';
-        star.style.maxHeight = '4px';
         
         starsContainer.appendChild(star);
         
@@ -36,17 +34,18 @@ function createStars() {
     }
     
     // Create initial stars with staggered timing
+    const initialDelay = isMobile ? 250 : 150;
     for (let i = 0; i < numberOfStars; i++) {
-        setTimeout(() => createStar(), i * 150);
+        setTimeout(() => createStar(), i * initialDelay);
     }
     
     // Continuously create new stars for seamless skyfall effect
-    const createInterval = setInterval(() => {
+    const interval = setInterval(() => {
         createStar();
-    }, 180);
+    }, createInterval);
     
     // Keep generating stars continuously
-    return createInterval;
+    return interval;
 }
 
 // Initialize stars on page load
@@ -90,43 +89,17 @@ faqItems.forEach(item => {
     });
 });
 
-// Smooth Scroll for Anchor Links - Extra smooth on mobile
+// Smooth Scroll for Anchor Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             const offsetTop = target.offsetTop - 80;
-            
-            // Use requestAnimationFrame for smoother scrolling on mobile
-            if (window.innerWidth <= 768) {
-                const startPosition = window.pageYOffset;
-                const distance = offsetTop - startPosition;
-                const duration = 800; // milliseconds
-                let start = null;
-                
-                function step(timestamp) {
-                    if (!start) start = timestamp;
-                    const progress = timestamp - start;
-                    const percentage = Math.min(progress / duration, 1);
-                    
-                    // Easing function for smooth deceleration
-                    const ease = 1 - Math.pow(1 - percentage, 3);
-                    
-                    window.scrollTo(0, startPosition + distance * ease);
-                    
-                    if (progress < duration) {
-                        requestAnimationFrame(step);
-                    }
-                }
-                
-                requestAnimationFrame(step);
-            } else {
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
         }
     });
 });
@@ -153,21 +126,27 @@ animatedElements.forEach(el => {
     observer.observe(el);
 });
 
-// Navbar Scroll Effect
+// Navbar Scroll Effect (optimized with requestAnimationFrame)
 let lastScroll = 0;
+let navbarTicking = false;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        navbar.style.boxShadow = 'none';
-    } else {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
-    }
-    
-    lastScroll = currentScroll;
-});
+    if (navbarTicking) return;
+    navbarTicking = true;
+    requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll <= 0) {
+            navbar.style.boxShadow = 'none';
+        } else {
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
+        }
+        
+        lastScroll = currentScroll;
+        navbarTicking = false;
+    });
+}, { passive: true });
 
 // Task List Animation (stagger effect)
 const taskLists = document.querySelectorAll('.task-list');
@@ -301,15 +280,34 @@ tabButtons.forEach(btn => {
     });
 });
 
-// Parallax Effect for Hero Section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
+// Parallax Effect for Hero Section (disabled on mobile for smooth scrolling)
+let parallaxEnabled = true;
+const isMobileDevice = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+if (!isMobileDevice) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && parallaxEnabled) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - scrolled / 500;
+            }
+            ticking = false;
+        });
+    }, { passive: true });
+} else {
+    // Disable parallax on mobile for smooth scrolling
+    parallaxEnabled = false;
     const hero = document.querySelector('.hero');
     if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - scrolled / 500;
+        hero.style.transform = 'none';
+        hero.style.willChange = 'auto';
     }
-});
+}
 
 // Add fade-in animation keyframes
 const style = document.createElement('style');
@@ -604,10 +602,11 @@ if (aiAssistantButton && aiAssistantChat) {
     }, { passive: true });
   });
 
-  // Ultra-subtle hero parallax (luxury, not gimmicky)
-  // Disabled on mobile for better performance and smoothness
+  // Ultra-subtle hero parallax (luxury, not gimmicky) - disabled on mobile
   const heroContent = document.querySelector('.hero-content');
-  if (heroContent && window.innerWidth > 768) {
+  const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  if (heroContent && !isMobile) {
     let ticking = false;
 
     const onScroll = () => {
@@ -616,12 +615,16 @@ if (aiAssistantButton && aiAssistantChat) {
       requestAnimationFrame(() => {
         const y = window.scrollY || 0;
         const offset = Math.min(y * 0.06, 18); // subtle
-        heroContent.style.transform = `translate3d(0, ${offset}px, 0)`;
+        heroContent.style.transform = `translateY(${offset}px)`;
         ticking = false;
       });
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
+  } else if (heroContent && isMobile) {
+    // Disable parallax on mobile for smooth scrolling
+    heroContent.style.transform = 'none';
+    heroContent.style.willChange = 'auto';
   }
 })();
 

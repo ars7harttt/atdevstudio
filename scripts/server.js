@@ -127,7 +127,15 @@ app.get('/api/health', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is also accessible at http://127.0.0.1:${PORT}`);
   console.log('Resend API configured and ready');
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use. Please stop the other server or use a different port.`);
+  } else {
+    console.error('Server error:', err);
+  }
+  process.exit(1);
 });

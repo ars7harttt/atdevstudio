@@ -21,10 +21,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* Optimize scrolling on mobile */
     -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
 }
 
 body {
@@ -33,17 +31,58 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
-    position: relative;
+    /* Optimize scrolling performance on mobile */
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+}
+
+/* Custom Scrollbar - Using hero-title gradient colors with color-changing effect */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 50%, var(--light-blue) 100%);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    animation: scrollbarColorShift 3s ease-in-out infinite;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    animation-duration: 1.5s;
+    background: linear-gradient(135deg, var(--light-blue), var(--light-green));
+    background-size: 100% 100%;
+}
+
+/* Color-changing animation for scrollbar - shifts from blue to white and back */
+@keyframes scrollbarColorShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Firefox scrollbar - using light-blue (middle of the gradient) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--light-blue) rgba(0, 0, 0, 0.3);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 /* Navigation */
@@ -155,6 +194,11 @@ body {
     background: #22d3a4 ;
 }
 
+.btn-primary:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(52, 211, 153, 0.4), 0 0 20px rgba(52, 211, 153, 0.3);
+}
+
 .btn-primary:hover::before {
     width: 3000px;
     height: 3000px;
@@ -200,6 +244,11 @@ body {
     box-shadow: 0 15px 35px rgba(52, 211, 153, 0.4), 0 0 20px rgba(52, 211, 153, 0.3);
 }
 
+.btn-secondary:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(52, 211, 153, 0.4), 0 0 20px rgba(52, 211, 153, 0.3);
+}
+
 .btn-secondary:hover::before {
     width: 300px;
     height: 300px;
@@ -214,9 +263,10 @@ body {
     padding: 120px 20px 80px;
     position: relative;
     overflow: hidden;
-    width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
+    /* Optimize for smooth scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .hero::before {
@@ -265,8 +315,10 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: 0;
-    max-width: 100vw;
-    contain: layout style paint;
+    /* Optimize for mobile performance */
+    will-change: contents;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .star {
@@ -276,8 +328,10 @@ body {
     opacity: 0;
     animation: skyfall linear forwards;
     will-change: transform, opacity;
-    max-width: 100vw;
-    contain: layout style paint;
+    /* GPU acceleration for smooth animation */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .star.small {
@@ -298,7 +352,7 @@ body {
 @keyframes skyfall {
     0% {
         opacity: 0;
-        transform: translate3d(0, -5vh, 0) scale(0.8);
+        transform: translateY(-5vh) translateX(0) scale(0.8);
     }
     5% {
         opacity: 0.9;
@@ -308,38 +362,13 @@ body {
     }
     100% {
         opacity: 0;
-        transform: translate3d(0, 105vh, 0) scale(0.8);
+        transform: translateY(105vh) translateX(0) scale(0.8);
     }
-}
-
-/* Prevent horizontal scroll on mobile - targeted approach */
-img, video, iframe, svg {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Ensure all containers respect viewport */
-.container,
-.nav-wrapper,
-.hero-content,
-section,
-footer,
-header {
-    max-width: 100vw;
-    box-sizing: border-box;
-}
-
-/* Prevent any element from causing horizontal overflow */
-body > * {
-    max-width: 100vw;
-    overflow-x: hidden;
 }
 
 .hero .container {
     position: relative;
     z-index: 2;
-    display: flex;
-    justify-content: center;
 }
 
 .hero-content {
@@ -412,10 +441,6 @@ body > * {
 section {
     padding: 100px 20px;
     position: relative;
-    width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
-    overflow-x: hidden;
 }
 
 .section-title {
@@ -933,6 +958,8 @@ section {
     border-radius: 12px;
     border: 1px solid rgba(96, 165, 250, 0.2);
     overflow-x: auto;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .code-block pre {
@@ -940,10 +967,16 @@ section {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.6;
+    overflow-x: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .code-block code {
     color: var(--light-green);
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 /* Benefits Section */
@@ -1504,6 +1537,11 @@ section {
     background: #22d3a4;
 }
 
+.contact-submit:active {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(52, 211, 153, 0.4), 0 0 20px rgba(52, 211, 153, 0.3);
+}
+
 .contact-submit:hover::before {
     width: 3000px;
     height: 3000px;
@@ -1647,27 +1685,6 @@ section {
     .process-steps {
         grid-template-columns: 1fr;
     }
-    
-    /* Hide code block on mobile and center all text */
-    .code-block {
-        display: none;
-    }
-    
-    .process-step {
-        text-align: center;
-    }
-    
-    .process-step > p {
-        text-align: center;
-    }
-    
-    .process-step h3 {
-        text-align: center;
-    }
-    
-    .step-number {
-        text-align: center;
-    }
 
     .pricing-card.featured {
         transform: scale(1);
@@ -1683,6 +1700,51 @@ section {
 
     .contact-form .form-row {
         grid-template-columns: 1fr;
+    }
+
+    .code-block {
+        padding: 20px;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .code-block pre {
+        font-size: 12px;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+    }
+
+    /* Optimize hero section for smooth scrolling on mobile */
+    .hero {
+        /* Disable parallax transform on mobile for smoother scrolling */
+        transform: none !important;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    .hero-content {
+        /* Remove parallax transform on mobile */
+        transform: none !important;
+    }
+
+    /* Reduce stars animation complexity on mobile */
+    .stars {
+        /* Reduce opacity slightly for better performance */
+        opacity: 0.7;
+    }
+
+    .star {
+        /* Simplify animation on mobile */
+        will-change: auto;
+    }
+
+    /* Optimize pulse animations on mobile */
+    .hero::before,
+    .hero::after {
+        /* Reduce animation complexity */
+        animation-duration: 6s;
     }
 }
 
@@ -2078,7 +2140,7 @@ section {
   opacity: 1;
 }
 
-/* Buttons: smoother, more "luxury" */
+/* Buttons: smoother, more "luxury" - matching PC animations */
 .btn-primary,
 .btn-secondary,
 .nav-links a,
@@ -2095,7 +2157,7 @@ section {
 .btn-primary:hover,
 .btn-secondary:hover,
 .book-call-btn:hover{
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
 }
 
 /* Respect reduced motion */
@@ -3270,6 +3332,11 @@ section {
   color: var(--light-green);
 }
 
+.blog-pill:active{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(52,211,153,.2);
+}
+
 .blog-pill span{
   position:relative;
   z-index:1;
@@ -3428,9 +3495,6 @@ section {
 .section-subtitle--left{ text-align:left; margin-left: 0; }
 
 .blog-search{ min-width: 240px; display:flex; justify-content:flex-end; }
-@media (max-width: 640px){
-  .blog-search{ min-width: auto; width: 100%; }
-}
 
 .blog-search input{
   width: min(420px, 100%);
@@ -3634,26 +3698,4 @@ section {
   .blog-newsletter-card{ flex-direction:column; align-items:stretch; }
   .blog-newsletter-form{ width:100%; justify-content:stretch; }
   .blog-newsletter-form input{ width:100%; }
-  .blog-search{ min-width: auto; width: 100%; }
-}
-
-/* Extra smooth scrolling for mobile */
-@media (max-width: 768px) {
-  html {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-  }
-  
-  /* Optimize animations for mobile performance */
-  .star {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    will-change: transform, opacity;
-  }
 }
